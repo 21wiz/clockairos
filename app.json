@@ -24,6 +24,7 @@
     }
   },
   "scripts": {
-    "postdeploy": "bundle exec rake db:create db:migrate"
-  }
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "success_url": "/landing.html"
 }
