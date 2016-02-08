@@ -37,10 +37,10 @@
     <![endif]-->
   </head>
   <body>
-  <body style="background-image:url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTh53BIURYIKHaRYZ9ozh-FdWgeIlZqn22cVGdz9rnvy19rojD1) ;overflow:hidden;background-size:cover";>
+  <body style="background-image:url('../../assets/walpaper.jpeg') ;overflow:hidden;background-size:cover";>
 
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
+    <div class="navbar navbar-default navbar-static-top" style=>
+      <div class="container-fluid">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -48,14 +48,16 @@
         </button>
         <a class="navbar-brand" href="/">ClocKairos</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-	    <a href="#" class="pull-left">
-              <img style="width:40px; margin-top: 0px;", src="image.png">
-            </a>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Login</a></li>
             <li><%= link_to "Create Alarm", new_appointment_path  %></li>
             <li><%= link_to "Alarms List", appointments_path  %></li>
-            <li><%= link_to "Why Kairos", "https://en.wikipedia.org/wiki/Kairos", :target => "_blank"  %></li>
-            <li><%= link_to image_tag("image.png"), "https://en.wikipedia.org/wiki/Kairos", :target => "_blank"  %></li>
+	  </ul>
+          <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to image_tag("icon_clockairos.png", height: '25', width: '25') %></li>
+            <li><%= link_to "Why 'Kairos'?", "https://en.wikipedia.org/wiki/Kairos", :target => "_blank"  %></li>
+            <li><%= link_to "Is snoozing bad? Hell Yeah", "http://gizmodo.com/5949809/why-the-snooze-button-is-ruining-your-sleep", :target => "_blank"  %></li>
           </ul>
         </div>
       </div>
