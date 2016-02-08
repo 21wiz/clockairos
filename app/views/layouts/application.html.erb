@@ -46,12 +46,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">ClocKairos</a>
+        <a class="navbar-brand" href="/">ClocKairos</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+	    <a href="#" class="pull-left">
+              <img style="width:40px; margin-top: 0px;", src="image.png">
+            </a>
             <li><%= link_to "Create Alarm", new_appointment_path  %></li>
             <li><%= link_to "Alarms List", appointments_path  %></li>
             <li><%= link_to "Why Kairos", "https://en.wikipedia.org/wiki/Kairos", :target => "_blank"  %></li>
+            <li><%= link_to image_tag("image.png"), "https://en.wikipedia.org/wiki/Kairos", :target => "_blank"  %></li>
           </ul>
         </div>
       </div>
@@ -68,8 +72,8 @@
       </div><!--/row-->
 
       <footer>
-      <footer style="position:absolute;bottom:25px;left:5px;font: bold 18px/30px Georgia">
-        <p>&#128533; &#8658; &#128526;  Good Morning Studios 2015</p>
+      <footer style="position:fixed;bottom:25px;right:5px;font: bold 18px/30px Georgia;text-align:left;">
+        <p>&#128533; &#8658; &#128526;  Good Morning Studios 2016</p>
         <p> Using <%= link_to "Twilio", "http://twilio.com" %> VoIP and Ruby on Rails. <p>
       </footer>
 
