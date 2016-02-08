@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: appointment_reminders_production
   username: appointment_reminders
   password: <%= ENV['APPOINTMENT_REMINDERS_DATABASE_PASSWORD'] %>
