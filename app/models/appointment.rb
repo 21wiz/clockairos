@@ -5,7 +5,7 @@ class Appointment < ActiveRecord::Base
 
   after_create :reminder
 
-  @@REMINDER_TIME = 30.minutes # minutes before appointment
+  @@REMINDER_TIME = 1.minutes # minutes before appointment
 
   # Notify our appointment attendee X minutes before the appointment time
   def reminder
