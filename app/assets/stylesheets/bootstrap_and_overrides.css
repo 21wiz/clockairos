@@ -7,6 +7,7 @@
   */
 
 .navbar-default {
+  padding-top: 10;
   background-color: #ffffff;
   border-color: #a1de13;
 }
@@ -18,9 +19,12 @@
   color: #000000;
 }
 .navbar-default .navbar-text {
+  padding-top: 10;
   color: #d5621d;
 }
 .navbar-default .navbar-nav > li > a {
+  padding-top: 5;
+  padding-bottom:0;
   color: #d5621d;
 }
 .navbar-default .navbar-nav > li > a:hover,
@@ -54,6 +58,7 @@
   border-color: #d5621d;
 }
 .navbar-default .navbar-link {
+  padding-top: 0;
   color: #d5621d;
 }
 .navbar-default .navbar-link:hover {
