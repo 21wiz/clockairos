@@ -30,6 +30,7 @@ class AppointmentsController < ApplicationController
   def create
     Time.zone = appointment_params[:time_zone]
     @appointment = Appointment.new(appointment_params)
+    appointment = Appointment.new(appointment_params)
     #@appointment.save
     respond_to do |format|
       if true #@appointment.save
