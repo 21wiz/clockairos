@@ -1,6 +1,6 @@
 {
-  "name": "Appointment Reminders",
-  "description": "Appointment Reminders in Rails with Twilio",
+  "name": "You Snooze you Loose Alarm",
+  "description": "Wake-up call in Rails with Twilio",
   "repository": "https://github.com/TwilioDevEd/appointment-reminders-rails",
   "keywords": [
     "sms", "phone", "twilio", "appointment reminders", "automation"
