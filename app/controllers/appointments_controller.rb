@@ -32,7 +32,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     appointment = Appointment.new(appointment_params)
     #@appointment.save
-    errormsg = @appointment.save
+    errormsg = @appointment.errors.messages
     respond_to do |format|
       if true #@appointment.save
         format.html { redirect_to appointments_url, notice:  "problems: # #{errormsg}"} #'Appointment was successfully created.'
