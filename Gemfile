@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.2.4'
 
+
+# Use Puma as the web server
 gem 'puma'
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
