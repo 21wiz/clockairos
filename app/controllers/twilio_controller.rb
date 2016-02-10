@@ -11,11 +11,10 @@ class TwilioController < ApplicationController
   def process_sms
     @city = params[:FromCity].capitalize
     @state = params[:FromState]
-    stateinhere = params[:FromState]
-    appointment_phone = params[:From]
-    if (params[:Body]==stateinhere)
+    id_app= params[:Body]
+    if True
         render 'process_sms.xml.erb', :content_type => 'text/xml'
-        #Appointment.find(params[:id]).destroy
+        Appointment.find(params[:id_app]).destroy
     else
         render 'process_sms2.xml.erb', :content_type => 'text/xml'
     end
