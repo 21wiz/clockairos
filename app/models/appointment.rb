@@ -43,7 +43,7 @@ class Appointment < ActiveRecord::Base
   def reminderCall
     @twilio_number = ENV['TWILIO_NUMBER']
     @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-    message = @client.account.messages.create(
+    call = @client.account.calls.create(
       :from => @twilio_number,
       :to => self.phone_number,
       :url => 'https://clockairos.herokuapp.com/twilio/twilio/call',
