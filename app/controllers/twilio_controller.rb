@@ -2,6 +2,7 @@ require 'twilio-ruby'
 
 class TwilioController < ApplicationController
   include Webhookable
+  before_action :set_ifcall
 
   after_filter :set_header
 
@@ -11,23 +12,27 @@ class TwilioController < ApplicationController
   def process_sms
     @city = params[:FromCity].capitalize
     @state = params[:FromState]
-    id= params[:Body]
-    if 1==1
+    id_state= params[:Body]
+    if @state==id_state
         render 'process_sms.xml.erb', :content_type => 'text/xml'
-        Appointment.find(params[:id]).destroy
+        ifcall = "0"
     else
         render 'process_sms2.xml.erb', :content_type => 'text/xml'
+        ifcall = "1"
     end
   end
 
 # POST /twilio/voice
   def voice
-  	response = Twilio::TwiML::Response.new do |r|
-  	  r.Say 'Hey there. Congrats on finding out that you an also call Clock Kairos', :voice => 'alice'
-  	  r.Play 'http://linode.rabasa.com/cantina.mp3'
-  	end
-
-  	render_twiml response
+        if ifcall=="1"
+  	  response = Twilio::TwiML::Response.new do |r|
+  	    r.Say 'Hey there. Congrats on finding out that you an also call Clock Kairos', :voice => 'alice'
+  	    r.Play 'http://linode.rabasa.com/cantina.mp3'
+  	  render_twiml response
+  	  break
+        else
+          break
+        end
   end
 
 # POST /twilio/call
@@ -36,13 +41,21 @@ class TwilioController < ApplicationController
     citystr = params[:FromCity]
     @state = params[:FromState]
     statestr = params[:FromState]
-    #namestr = appointment_params[:name]
-  	response = Twilio::TwiML::Response.new do |r|
-  	  r.Say "Hey there . Congrats waking up on time! It is a beautiful day in #{citystr}, #{statestr}. Now gather your energy and GO CHANGE THE WORLD!", :voice => 'man'
-  	  r.Play 'http://linode.rabasa.com/cantina.mp3'
-  	end
+    if ifcall=="1"
+      response = Twilio::TwiML::Response.new do |r|
+        r.Say "Hey there . Congrats waking up on time! It is a beautiful day in #{citystr}, #{statestr}. Now gather your energy and GO CHANGE THE WORLD!", :voice => 'man'
+        r.Play 'http://linode.rabasa.com/cantina.mp3'
+      render_twiml response
+    else
+      ifcall="1"
+      break
+    end
 
-  	render_twiml response
   end
+
+  private 
+    def set_ifcall
+      ifcall=1
+    end
 
 end
