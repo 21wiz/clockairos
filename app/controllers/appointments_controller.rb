@@ -32,7 +32,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to appointments_url, notice:  "Alarm at #{appointment_params} was successfully created.'"}
+        format.html { redirect_to appointments_url, notice:  "#{appointment_params[:name]}, your Alarm was successfully created. You will receive a call at said hour, and prepare to answer a question to verify that your brain is operational'"}
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :new }
