@@ -6,11 +6,11 @@ class Appointment < ActiveRecord::Base
   validates :time, presence: true
 
   after_create :reminder
+  after_create :reminderGonnaCall
   after_create :reminderCall
-
-  @@REMINDER_TIME = 5.minutes # minutes before appointment
-  @@REMINDERGONNACALL_TIME = 1.minutes # minutes before appointment
-  @@REMINDERCALL_TIME = 0.minutes # minutes before appointment
+  @@REMINDER_TIME = 7.minutes # minutes before appointment
+  @@REMINDERGONNACALL_TIME = 3.minutes # minutes before appointment
+  @@REMINDERCALL_TIME = 1.minutes # minutes before appointment
 
   # Notify our appointment attendee X minutes before the appointment time
   def reminder
@@ -30,11 +30,11 @@ class Appointment < ActiveRecord::Base
     @twilio_number = ENV['TWILIO_NUMBER']
     @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     time_str = (self.time).strftime("%I:%M%p ") #on %b. %d, %Y
-    reminderCall = "Hi #{self.name}. It's time, actually it's #{time_str} in Ireland, so I'm Calling..."
+    reminderGonnaCall = "Hi #{self.name}. It's time, actually it's #{time_str} in Ireland, so I'm Calling..."
     message = @client.account.messages.create(
       :from => @twilio_number,
       :to => self.phone_number,
-      :body => reminderCall,
+      :body => reminderGonnaCall,
     )
     puts message.to
   end
@@ -46,7 +46,7 @@ class Appointment < ActiveRecord::Base
     message = @client.account.messages.create(
       :from => @twilio_number,
       :to => self.phone_number,
-      :url => 'https://clockairos.herokuapp.com/twilio/twilio/process_sms',
+      :url => 'https://clockairos.herokuapp.com/twilio/twilio/call',
       :method => 'POST',
       :fallback_method => 'GET',
       :status_callback_method => 'GET',
