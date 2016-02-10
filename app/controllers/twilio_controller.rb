@@ -37,7 +37,7 @@ class TwilioController < ApplicationController
     statestr = params[:FromState]
     #namestr = appointment_params[:name]
   	response = Twilio::TwiML::Response.new do |r|
-  	  r.Say "Hey there . Congrats waking up on time! It is a beautiful day in #{citystr}, #{statestr}. Now gather your energy and GO CHANGE THE WORLD!", :voice => 'alice'
+  	  r.Say "Hey there . Congrats waking up on time! It is a beautiful day in #{citystr}, #{statestr}. Now gather your energy and GO CHANGE THE WORLD!", :voice => 'man'
   	  r.Play 'http://linode.rabasa.com/cantina.mp3'
   	end
 
