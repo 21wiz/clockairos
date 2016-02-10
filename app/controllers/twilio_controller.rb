@@ -11,11 +11,9 @@ class TwilioController < ApplicationController
   def process_sms
     @city = params[:FromCity].capitalize
     @state = params[:FromState]
-    yourPhone = "+1"+params[:Body]
-    appthere = Appointment.first(:conditions => "phone_number = params[:Body]")
-    if yourPhone.include? params[:from]
+    if params[:Body]==params[:from]
         render 'process_sms.xml.erb', :content_type => 'text/xml'
-        appthere.destroy
+        Appointment.first(:conditions => "phone_number = params[:from]").destroy
       else
         render 'process_sms2.xml.erb', :content_type => 'text/xml'
       end
@@ -24,7 +22,7 @@ class TwilioController < ApplicationController
 # POST /twilio/voice
   def voice
   	response = Twilio::TwiML::Response.new do |r|
-  	  r.Say 'Hey there. Congrats on integrating Twilio into your Rails 4 app.', :voice => 'alice'
+  	  r.Say 'Hey there. Congrats on finding out that you an also call Clock Kairos', :voice => 'alice'
   	  r.Play 'http://linode.rabasa.com/cantina.mp3'
   	end
 
