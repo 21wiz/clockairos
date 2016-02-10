@@ -13,8 +13,9 @@ class Appointment < ActiveRecord::Base
   def reminder
     @twilio_number = ENV['TWILIO_NUMBER']
     @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-    time_str = (self.time).strftime("%I:%M%p on %b. %d, %Y")
-    reminder = "Hi #{self.name}. You shold be waking up. If you don't answer this message before #{time_str} with today's date as 'mmddyyy' I'll really make sure you wake up, trust me."
+    time_str = (self.time).strftime("%I:%M%p") #on %b. %d, %Y
+    time_str2 = time-(self.time)
+    reminder = "Hi #{self.name}. You shold be waking up soon. If you don't answer this message in the next #{time_str2} with today's date as 'mmddyyy' I'll really make sure you wake up, trust me. Alarm setted to #{self.time}"
     message = @client.account.messages.create(
       :from => @twilio_number,
       :to => self.phone_number,
@@ -26,8 +27,8 @@ class Appointment < ActiveRecord::Base
   def reminderCall
     @twilio_number = ENV['TWILIO_NUMBER']
     @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-    time_str = ((self.time).localtime).strftime("%I:%M%p on %b. %d, %Y")
-    reminderCall = "Hi #{self.name}. It's #{time_str} I'm Calling..."
+    time_str = (self.time).strftime("%I:%M%p ") #on %b. %d, %Y
+    reminderCall = "Hi #{self.name}. It's time, actually it's #{time_str} in Ireland, so I'm Calling..."
     message = @client.account.messages.create(
       :from => @twilio_number,
       :to => self.phone_number,
