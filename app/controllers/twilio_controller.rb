@@ -7,11 +7,13 @@ class TwilioController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
-# POST /twilio/process_sms/1
+# POST /twilio/process_sms/
   def process_sms
     @city = params[:FromCity].capitalize
     @state = params[:FromState]
-    if params[:Body]==params[:from]
+    phone1 = params[:Body].to_s
+    phone2 = params[:From].to_s
+    if ((params[:Body]==params[:From]) || (phone1 = phone2))
         render 'process_sms.xml.erb', :content_type => 'text/xml'
         Appointment.first(:conditions => "phone_number = params[:from]").destroy
       else
