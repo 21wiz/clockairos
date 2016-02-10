@@ -54,7 +54,7 @@ class Appointment < ActiveRecord::Base
       :timeout => '30',
       :record => 'false'
     )
-    puts message.to
+    puts call.to
   end
 
   # Here we define the times of each event
