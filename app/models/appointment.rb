@@ -46,7 +46,7 @@ class Appointment < ActiveRecord::Base
     call = @client.account.calls.create(
       :from => @twilio_number,
       :to => self.phone_number,
-      :url => 'https://clockairos.herokuapp.com/twilio/twilio/call',
+      :url => 'https://clockairos.herokuapp.com/twilio/call',
       :method => 'POST',
       :fallback_method => 'GET',
       :status_callback_method => 'GET',

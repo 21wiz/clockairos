@@ -11,6 +11,7 @@ class TwilioController < ApplicationController
   def process_sms
     @city = params[:FromCity].capitalize
     @state = params[:FromState]
+    #if params[Body].te
     render 'process_sms.xml.erb', :content_type => 'text/xml'
   end
 
@@ -26,7 +27,7 @@ class TwilioController < ApplicationController
 
 # POST /twilio/call
   def call
-    @city = params[:FromCity].capitalize
+    @city = params[:FromCity]
     @state = params[:FromState]
   	response = Twilio::TwiML::Response.new do |r|
   	  r.Say 'Hey there. Congrats waking up on time! It is a beautiful day in #{city}, #{state}. Now gather that energy and GO CHANGE THE WORLD!', :voice => 'alice'
