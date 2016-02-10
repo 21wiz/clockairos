@@ -17,7 +17,7 @@ class Appointment < ActiveRecord::Base
     @twilio_number = ENV['TWILIO_NUMBER']
     @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     time_str = (self.time).strftime("%I:%M%p") #on %b. %d, %Y
-    reminder = "Hi #{self.name}. You shold be waking up soon. If you don't answer this message in the next 7 minnutes with today's date as 'mmddyyy' I'll really make sure you wake up, trust me. Alarm setted to #{(self.time).localtime}"
+    reminder = "Hi #{self.name}. You shold be waking up soon. If you don't want to be disturbed answer this message in the next 7 minutes only with your phone numer as +10123456789 without any Dashes or parenthesis. Otherwise I'll really make sure you wake up, trust me."
     message = @client.account.messages.create(
       :from => @twilio_number,
       :to => self.phone_number,
@@ -30,7 +30,7 @@ class Appointment < ActiveRecord::Base
     @twilio_number = ENV['TWILIO_NUMBER']
     @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     time_str = (self.time).strftime("%I:%M%p ") #on %b. %d, %Y
-    reminderGonnaCall = "Hi #{self.name}. It's time, actually it's #{time_str} in Ireland, so I'm Calling..."
+    reminderGonnaCall = "Hi #{self.name}. It's time, actually it's #{time_str} in Ireland (sound pretty late to wake up huh), so I'm Calling..."
     message = @client.account.messages.create(
       :from => @twilio_number,
       :to => self.phone_number,
