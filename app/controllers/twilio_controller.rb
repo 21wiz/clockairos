@@ -24,4 +24,16 @@ class TwilioController < ApplicationController
   	render_twiml response
   end
 
+# POST /twilio/call
+  def call
+    @city = params[:FromCity].capitalize
+    @state = params[:FromState]
+  	response = Twilio::TwiML::Response.new do |r|
+  	  r.Say 'Hey there. Congrats waking up on time! It is a beautiful day in #{city}, #{state}. Now gather that energy and GO CHANGE THE WORLD!', :voice => 'alice'
+  	  r.Play 'http://linode.rabasa.com/cantina.mp3'
+  	end
+
+  	render_twiml response
+  end
+
 end
