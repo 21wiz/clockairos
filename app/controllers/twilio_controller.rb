@@ -12,9 +12,10 @@ class TwilioController < ApplicationController
     @city = params[:FromCity].capitalize
     @state = params[:FromState]
     stateinhere = params[:FromState]
+    appointment_phone = params[:From]
     if (params[:Body]==stateinhere)
         render 'process_sms.xml.erb', :content_type => 'text/xml'
-        #Appointment.find_by(phone_number: stateinhere)
+        Appointment.find_by(phone_number: appointment_phone)
     else
         render 'process_sms2.xml.erb', :content_type => 'text/xml'
     end
