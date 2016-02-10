@@ -51,5 +51,9 @@ Add this to your config/application.rb file
 `config.time_zone = 'Pacific Time (US & Canada)'`
 
 
+            <li><a href="/login"><span class="glyphicon glyphicon-plus"></span> Sign Up</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-pencil"></span> Login</a></li>
+
+
 
 

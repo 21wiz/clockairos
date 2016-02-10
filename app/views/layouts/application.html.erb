@@ -49,8 +49,8 @@
         <a class="navbar-brand" href="/">ClocKairos</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Login</a></li>
+            <li><%= link_to "Log In", "/sessions"  %></li>
+            
             <li><%= link_to "Create Alarm", new_appointment_path  %></li>
             <li><%= link_to "Alarms List", appointments_path  %></li>
 	  </ul>
