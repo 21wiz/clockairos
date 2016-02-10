@@ -10,6 +10,10 @@
   <dd><%= @appointment.phone_number %></dd>
   <dt><strong><%= model_class.human_attribute_name(:time) %>:</strong></dt>
   <dd><%= ((@appointment.time).in_time_zone(@appointment.time_zone)).strftime("%I:%M%p") %></dd>
+  <dt><strong><%= "Date" %>:</strong></dt>
+  <dd><%= ((@appointment.time).in_time_zone(@appointment.time_zone)).strftime("%b. %d, %Y") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:time_zone) %>:</strong></dt>
+  <dd><%= @appointment.time_zone %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

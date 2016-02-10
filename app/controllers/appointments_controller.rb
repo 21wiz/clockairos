@@ -6,7 +6,7 @@ class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.all
     if @appointments.length == 0
-      flash[:alert] = "You have no appointments. Create one now to get started."
+      flash[:alert] = "You have no Alarms. Create one now to kick-start your way to productive mornings."
     end
   end
 
@@ -18,7 +18,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
-    @min_date = DateTime.now
+    @min_date = DateTime.now.in_time_zone("Pacific Time (US & Canada)")
   end
 
   # GET /appointments/1/edit
@@ -46,7 +46,7 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
+        format.html { redirect_to @appointment, notice: 'Alarm was successfully updated.' }
         format.json { render :show, status: :ok, location: @appointment }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to appointments_url, notice: 'Alarm was successfully cancelled.' }
       format.json { head :no_content }
     end
   end
