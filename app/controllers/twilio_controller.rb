@@ -12,8 +12,9 @@ class TwilioController < ApplicationController
   def process_sms
     @city = params[:FromCity].capitalize
     @state = params[:FromState]
+    which_state = params[:FromState]
     id_state= params[:Body]
-    if @state==id_state
+    if which_state==id_state
         render 'process_sms.xml.erb', :content_type => 'text/xml'
         ifcall = "0"
     else
@@ -24,15 +25,15 @@ class TwilioController < ApplicationController
 
 # POST /twilio/voice
   def voice
-        if ifcall=="1"
-  	  response = Twilio::TwiML::Response.new do |r|
-  	    r.Say 'Hey there. Congrats on finding out that you an also call Clock Kairos', :voice => 'alice'
-  	    r.Play 'http://linode.rabasa.com/cantina.mp3'
-  	  render_twiml response
-  	  break
-        else
-          break
-        end
+      if ifcall=="1"
+        response = Twilio::TwiML::Response.new do |r|
+          r.Say 'Hey there. Congrats on finding out that you an also call Clock Kairos', :voice => 'alice'
+          r.Play 'http://linode.rabasa.com/cantina.mp3'
+        render_twiml response
+        break
+      else
+        break
+      end
   end
 
 # POST /twilio/call
@@ -50,12 +51,11 @@ class TwilioController < ApplicationController
       ifcall="1"
       break
     end
-
   end
 
   private 
     def set_ifcall
       ifcall=1
     end
-
+  end
 end
