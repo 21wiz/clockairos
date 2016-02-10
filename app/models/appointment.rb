@@ -13,7 +13,7 @@ class Appointment < ActiveRecord::Base
   def reminder
     @twilio_number = ENV['TWILIO_NUMBER']
     @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-    time_str = ((self.time).localtime).strftime("%I:%M%p on %b. %d, %Y")
+    time_str = (self.time).strftime("%I:%M%p on %b. %d, %Y")
     reminder = "Hi #{self.name}. You shold be waking up. If you don't answer this message before #{time_str} with today's date as 'mmddyyy' I'll really make sure you wake up, trust me."
     message = @client.account.messages.create(
       :from => @twilio_number,
